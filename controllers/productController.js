@@ -1,5 +1,6 @@
 const Product = require('../models/products');
 
+// GET /products
 exports.getProducts = (req, res, next) => {
     Product.find()
         .then(products => {
@@ -16,6 +17,7 @@ exports.getProducts = (req, res, next) => {
         );
 }
 
+// POST /products/add
 exports.addProduct = (req, res, next) => {
     const product = new Product({
         name: req.body.name,
@@ -36,6 +38,7 @@ exports.addProduct = (req, res, next) => {
         );
 }
 
+// GET /products/:id
 exports.getProductDetails = (req, res, next) => {
     const id = req.params.id;
     Product.findById(id)
@@ -56,6 +59,7 @@ exports.getProductDetails = (req, res, next) => {
         );
 }
 
+// PUT /products/:id
 exports.updateProduct = (req, res, next) => {
     const id = req.params.id;
     const updateOps = {};
@@ -77,6 +81,7 @@ exports.updateProduct = (req, res, next) => {
         );
 }
 
+// DELETE /products/:id
 exports.deleteProduct = (req, res, next) => {
     const id = req.params.id;
     Product.deleteOne({ _id: id })
